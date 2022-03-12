@@ -1,7 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const notes = require('./data/animalspublic/assets/js/index');
+// const { notes } = require('./db/db');
+const htmlRoutes = require('./routes/htmlRoutes');
+// const apiRoutes = require('./routes/apiRoutes')
 
 const app = express();
 var PORT = process.env.PORT || 3001;
@@ -10,9 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-// app.get('/notes', (req, res) => {
-//   res.sendFile(path.join(__dirname, './public/notes.html'));
-// });
+//app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
